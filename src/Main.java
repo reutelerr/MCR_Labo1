@@ -4,12 +4,15 @@ import javax.swing.*;
 public class Main {
 
     public static void main(String[] args) {
+      
+        //**TESTS DE ROBIN**
+        
         //Tests de l'hologe concrète
         Chronometer chrono = new Chronometer(0);
         chrono.start();
         try
         {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         }
         catch(java.lang.InterruptedException e)
         {
@@ -18,9 +21,11 @@ public class Main {
         chrono.stop();
         System.out.println(chrono.getTimeInSeconds());
 
+        //Test du controlleur
+        ClockController controller = new ClockController();
 
 
-
+        //**TESTS DE CLAIRE**
 
         //Test de l'affichage clock
         {
@@ -41,6 +46,7 @@ public class Main {
             frame.repaint();
         }
 
-        new ClockLayout();
+        new ClockLayout();        
+
     }
 }

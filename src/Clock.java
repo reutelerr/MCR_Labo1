@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -5,19 +6,41 @@ public abstract class Clock
 {
     private java.util.ArrayList<ClockViewer> observers;
 
+    /**
+     * @brief : Constructor : Creates an empty list of observers
+     */
+    Clock()
+    {
+        observers = new ArrayList<ClockViewer>();
+    }
+
+    /**
+     * @brief Tells all current observers to update
+     */
     public void notifyObservers()
     {
-
+        for(ClockViewer observer : observers)
+        {
+            observer.update();
+        }
     }
 
+    /**
+     * @brief Adds an observer to the clock
+     * @param v a Clock observer
+     */
     public void attach(ClockViewer v)
     {
-
+        observers.add(v);
     }
 
+    /**
+     * @brief Removes an observer from the clock
+     * @param v a Clock observer
+     */
     public void detach(ClockViewer v)
     {
-
+        observers.remove(v);
     }
 
 }
@@ -27,27 +50,39 @@ class Chronometer extends Clock
     private Timer timer;
     private int time_in_seconds;
 
+    /**
+     * @brief Constructor : creates a Timer and sets the starting time-value of the clock
+     * @param startTime the initial clock's time
+     */
     Chronometer(int startTime)
     {
+        super();
         timer = new Timer();
+        time_in_seconds = startTime;
     }
 
-    void reInit()
+    /**
+     * @brief Resets the time to 0
+     */
+    void reset()
     {
         time_in_seconds = 0;
     }
 
+    /**
+     * @brief Pauses the clock
+     */
     void stop()
     {
         timer.cancel();
     }
 
-    void start()
-    {
-        class Tick extends TimerTask
-        {
-            public void run()
-            {
+    /**
+     * @brief Runs the clock
+     */
+    void start() {
+        class Tick extends TimerTask {
+            public void run() {
                 time_in_seconds++;
                 notifyObservers();
             }
@@ -56,6 +91,10 @@ class Chronometer extends Clock
         timer.scheduleAtFixedRate(tick, 0, 1000);
     }
 
+    /**
+     * @brief gets the clock's time
+     * @return the clock's time
+     */
     int getTimeInSeconds()
     {
         return time_in_seconds;

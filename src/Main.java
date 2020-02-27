@@ -6,7 +6,7 @@ public class Main {
         chrono.start();
         try
         {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         }
         catch(java.lang.InterruptedException e)
         {
@@ -14,6 +14,5 @@ public class Main {
         }
         chrono.stop();
         System.out.println(chrono.getTimeInSeconds());
-
     }
 }

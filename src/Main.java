@@ -1,6 +1,12 @@
+import java.awt.*;
+import javax.swing.*;
+
 public class Main {
 
     public static void main(String[] args) {
+      
+        //**TESTS DE ROBIN**
+        
         //Tests de l'hologe concrète
         Chronometer chrono = new Chronometer(0);
         chrono.start();
@@ -17,5 +23,30 @@ public class Main {
 
         //Test du controlleur
         ClockController controller = new ClockController();
+
+
+        //**TESTS DE CLAIRE**
+
+        //Test de l'affichage clock
+        {
+            JFrame frame = new JFrame("Analog");
+            Panel panel = new ClockImage(false);
+            frame.getContentPane().add(panel);
+            frame.setSize(500, 500);
+            frame.setVisible(true);
+            frame.repaint();
+        }
+        //Test de l'affichage clock
+        {
+            JFrame frame = new JFrame("Roman");
+            Panel panel = new ClockImage(true);
+            frame.getContentPane().add(panel);
+            frame.setSize(500, 500);
+            frame.setVisible(true);
+            frame.repaint();
+        }
+
+        new ClockLayout();        
+
     }
 }

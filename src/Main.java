@@ -42,11 +42,5 @@ public class Main {
         }
 
         new ClockLayout();
-
-
-
-
-            //TEST affichage2
-
     }
 }

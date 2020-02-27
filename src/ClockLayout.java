@@ -1,23 +1,26 @@
 import java.awt.*;
 import javax.swing.*;
 
+
 public class ClockLayout {
     ClockLayout() {
         JFrame frame = new JFrame("Flow Layout");
-        JButton button, button1, button2, button3, button4;
-        button = new JButton("button 1");
-        button1 = new JButton("button 2");
-        button2 = new JButton("button 3");
-        button3 = new JButton("button 4");
-        button4 = new JButton("button 5");
-        frame.add(button);
-        frame.add(button1);
-        frame.add(button2);
-        frame.add(button3);
-        frame.add(button4);
+        Panel romanPanel = getClockPanel(true);
+        Panel arabPanel = getClockPanel(false);
+        JLabel digital = new JLabel("hh:mm:ss");
+        //frame.setLayout(new FlowLayout());
+        frame.getContentPane().add(romanPanel);
+        frame.getContentPane().add(arabPanel);
+        frame.getContentPane().add(digital);
         frame.setLayout(new FlowLayout());
-        frame.setSize(300, 300);
+        frame.setSize(500, 500);
         frame.setVisible(true);
+        frame.repaint();
     }
 
+
+    public static Panel getClockPanel(boolean romanClock){  //TODO sert à rien méthode séparée
+        Panel panel = new ClockImage(romanClock);
+        return panel;
+    }
 }

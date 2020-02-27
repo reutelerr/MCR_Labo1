@@ -19,7 +19,9 @@ public abstract class Clock
 
 }
 
-public class Chronometer extends Clock
+class Chronometer extends Clock
 {
-    private 
+    private java.util.Timer timer;
+
+    
 }

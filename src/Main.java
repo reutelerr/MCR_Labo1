@@ -14,5 +14,8 @@ public class Main {
         }
         chrono.stop();
         System.out.println(chrono.getTimeInSeconds());
+
+        //Test du controlleur
+        ClockController controller = new ClockController();
     }
 }

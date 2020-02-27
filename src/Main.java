@@ -1,3 +1,6 @@
+import java.awt.*;
+import javax.swing.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -15,6 +18,35 @@ public class Main {
         chrono.stop();
         System.out.println(chrono.getTimeInSeconds());
 
+
+
+
+
+        //Test de l'affichage clock
+        {
+            JFrame frame = new JFrame("Analog");
+            Panel panel = new ClockImage(false);
+            frame.getContentPane().add(panel);
+            frame.setSize(500, 500);
+            frame.setVisible(true);
+            frame.repaint();
+        }
+        //Test de l'affichage clock
+        {
+            JFrame frame = new JFrame("Roman");
+            Panel panel = new ClockImage(true);
+            frame.getContentPane().add(panel);
+            frame.setSize(500, 500);
+            frame.setVisible(true);
+            frame.repaint();
+        }
+
+        new ClockLayout();
+
+
+
+
+            //TEST affichage2
 
     }
 }

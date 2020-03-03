@@ -3,10 +3,10 @@ import javax.swing.*;
 
 
 public class ClockLayout {
-    ClockLayout() {
+    ClockLayout(Clock clock) {
         JFrame frame = new JFrame("Flow Layout");
-        Panel romanPanel = getClockPanel(true);
-        Panel arabPanel = getClockPanel(false);
+        Panel romanPanel = getClockPanel(true, clock);
+        Panel arabPanel = getClockPanel(false, clock);
         JLabel digital = new JLabel("hh:mm:ss");
         //frame.setLayout(new FlowLayout());
         frame.getContentPane().add(romanPanel);
@@ -19,8 +19,8 @@ public class ClockLayout {
     }
 
 
-    public static Panel getClockPanel(boolean romanClock){  //TODO sert à rien méthode séparée
-        Panel panel = new ClockImage(romanClock);
+    public static Panel getClockPanel(boolean romanClock, Clock clock){  //TODO sert à rien méthode séparée
+        Panel panel = new AnalogObserver(romanClock, clock);
         return panel;
     }
 }

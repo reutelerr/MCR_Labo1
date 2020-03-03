@@ -79,12 +79,12 @@ public class ClockController implements ClockViewer
 
     public void CreateRomanClockViewer()
     {
-        //Panel panel = new ClockImage(false);
+        createAnalogViewer(true);
     }
 
     public void CreateArabClockViewer()
     {
-        //Panel panel = new ClockImage(false);
+        createAnalogViewer(false);
     }
 
     public void CreateNumericClockViewer()
@@ -95,6 +95,15 @@ public class ClockController implements ClockViewer
     public void CreateMixedClockViewer()
     {
 
+    }
+
+    private void createAnalogViewer(boolean romanClock){
+        JFrame frame = new JFrame("Analog");
+        Panel panel = new AnalogObserver(romanClock, clock);
+        frame.getContentPane().add(panel);
+        frame.setSize(500, 500);
+        frame.setVisible(true);
+        frame.repaint();
     }
 
     public void update()

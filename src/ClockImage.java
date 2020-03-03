@@ -5,6 +5,7 @@ import java.awt.geom.*;
 
 public class ClockImage extends Panel {
     public static final int CLOCK_SIDE = 300;
+    public static final int CLOCK_HALFSIDE = CLOCK_SIDE/2;
 
 
     private Image clockImg;
@@ -30,7 +31,12 @@ public class ClockImage extends Panel {
         g.drawImage(clockImg, 0, 0, null);
             //super.paint(g);  // fixes the immediate problem.
             Graphics2D g2 = (Graphics2D) g;
-            Line2D lin = new Line2D.Float(CLOCK_SIDE/2, CLOCK_SIDE/2, 0, 0);
+            int i = 15;
+            double radians = Math.toRadians((360/60)*i);
+            double x = Math.cos(radians - Math.PI/2.0)*CLOCK_HALFSIDE;
+            double y = Math.sin(radians - Math.PI/2.0)*CLOCK_HALFSIDE;
+
+            Line2D lin = new Line2D.Float(CLOCK_HALFSIDE, CLOCK_HALFSIDE, (float) (CLOCK_HALFSIDE + x), (float) (CLOCK_HALFSIDE + y));
             g2.draw(lin);
     }
 

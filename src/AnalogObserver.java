@@ -51,19 +51,20 @@ public class AnalogObserver extends Panel implements ClockViewer{
 
     private void paintNeedles(Graphics g){
         int time = myClock.getTimeInSeconds();
+        //int time = 30 + 60*15 + 60*60*19;
         int seconds = time%60;
         int minutes = (time/60)%60;
         int hours = (time/(60*60))%12;  //TODO check div
 
-        paintANeedle(g, seconds, 1);
-        paintANeedle(g, minutes, 0.8);
-        paintANeedle(g, hours, 0.4);
+        paintANeedle(g, seconds, 0.8, 360/60);
+        paintANeedle(g, minutes, 0.6, 360/60);
+        paintANeedle(g, hours, 0.4, 360/12);
     }
 
-    private void paintANeedle(Graphics g, int time, double needleRatio){
+    private void paintANeedle(Graphics g, int time, double needleRatio, int degree){
         Graphics2D g2 = (Graphics2D) g;
 
-        double radians = Math.toRadians((360/60)*time);
+        double radians = Math.toRadians(degree*time);
         double x = Math.cos(radians - Math.PI/2.0)*CLOCK_HALFSIDE*needleRatio;
         double y = Math.sin(radians - Math.PI/2.0)*CLOCK_HALFSIDE*needleRatio;
 

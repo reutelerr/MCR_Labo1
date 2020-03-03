@@ -43,6 +43,7 @@ public abstract class Clock
         observers.remove(v);
     }
 
+    public abstract int getTimeInSeconds();
 }
 
 class Chronometer extends Clock
@@ -95,7 +96,7 @@ class Chronometer extends Clock
      * @brief gets the clock's time
      * @return the clock's time
      */
-    int getTimeInSeconds()
+    public int getTimeInSeconds()
     {
         return time_in_seconds;
     }

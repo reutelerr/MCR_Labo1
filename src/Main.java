@@ -28,9 +28,9 @@ public class Main {
         //**TESTS DE CLAIRE**
 
         //Test de l'affichage clock
-        {
+        /*{
             JFrame frame = new JFrame("Analog");
-            Panel panel = new ClockImage(false);
+            Panel panel = new AnalogObserver(false);
             frame.getContentPane().add(panel);
             frame.setSize(500, 500);
             frame.setVisible(true);
@@ -39,14 +39,14 @@ public class Main {
         //Test de l'affichage clock
         {
             JFrame frame = new JFrame("Roman");
-            Panel panel = new ClockImage(true);
+            Panel panel = new AnalogObserver(true);
             frame.getContentPane().add(panel);
             frame.setSize(500, 500);
             frame.setVisible(true);
             frame.repaint();
         }
 
-        new ClockLayout();        
+        new ClockLayout();        */
 
     }
 }

@@ -2,7 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class ClockLayout {
+public class ClockLayout extends Panel {
     ClockLayout(Clock clock) {
         JFrame frame = new JFrame("Flow Layout");
         Panel romanPanel = getClockPanel(true, clock);

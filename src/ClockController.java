@@ -101,7 +101,12 @@ public class ClockController implements ClockViewer
 
     public void CreateMixedClockViewer()
     {
-
+        //JFrame frame = new JFrame("Horloge Mixte");
+        Panel panel = new ClockLayout(clock);
+        /*frame.getContentPane().add(panel);
+        frame.setSize(500, 200);
+        frame.setVisible(true);
+        frame.repaint();*/
     }
 
     private void createAnalogViewer(boolean romanClock){

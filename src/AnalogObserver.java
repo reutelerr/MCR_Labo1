@@ -17,12 +17,13 @@ public class AnalogObserver extends Panel implements ClockViewer{
      */
     public AnalogObserver(boolean romanClock, Clock subject) {
         try {
-            String clockFilename = romanClock ? "C:\\Users\\Claire\\Desktop\\heig\\2019\\MCR\\Labo\\clock2.jpg" : "C:\\Users\\Claire\\Desktop\\heig\\2019\\MCR\\Labo\\clock1.jpg";
+            String clockFilename = romanClock ? "/Users/robinreuteler/IdeaProjects/MCR_Labo1/clock2.jpg" : "/Users/robinreuteler/IdeaProjects/MCR_Labo1/clock1.jpg";
             Image myImg = Toolkit.getDefaultToolkit().getImage(clockFilename);
             clockImg = myImg.getScaledInstance(CLOCK_SIDE, CLOCK_SIDE, Image.SCALE_DEFAULT);
 
             myClock = subject;
             subject.attach(this);
+            update();
         } catch (Exception e) {
             System.out.println("Error:"+e.getMessage());
         }

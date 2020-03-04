@@ -1,3 +1,3 @@
 public interface ClockViewer {
-    public void update();
+    public abstract void update();
 }

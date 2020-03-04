@@ -89,8 +89,14 @@ public class ClockController implements ClockViewer
 
     public void CreateNumericClockViewer()
     {
-
+        JFrame frame = new JFrame("Horloge Numérique");
+        Panel panel = new DigitalViewer(clock);
+        frame.getContentPane().add(panel);
+        frame.setSize(500, 200);
+        frame.setVisible(true);
+        frame.repaint();
     }
+
 
     public void CreateMixedClockViewer()
     {
@@ -98,7 +104,17 @@ public class ClockController implements ClockViewer
     }
 
     private void createAnalogViewer(boolean romanClock){
-        JFrame frame = new JFrame("Analog");
+
+        JFrame frame;
+        if(romanClock)
+        {
+            frame = new JFrame("Horloge Romaine");
+        }
+        else
+        {
+            frame = new JFrame("Horloge Arabe");
+        }
+
         Panel panel = new AnalogObserver(romanClock, clock);
         frame.getContentPane().add(panel);
         frame.setSize(500, 500);

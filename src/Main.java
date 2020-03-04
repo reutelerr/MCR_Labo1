@@ -8,7 +8,7 @@ public class Main {
         //**TESTS DE ROBIN**
         
         //Tests de l'hologe concrète
-        Chronometer chrono = new Chronometer(0);
+        /*Chronometer chrono = new Chronometer(0);
         chrono.start();
         try
         {
@@ -19,7 +19,7 @@ public class Main {
             System.out.println("Error in sleep()");
         }
         chrono.stop();
-        System.out.println(chrono.getTimeInSeconds());
+        System.out.println(chrono.getTimeInSeconds());*/
 
         //Test du controlleur
         ClockController controller = new ClockController();

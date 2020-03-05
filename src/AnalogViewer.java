@@ -18,8 +18,8 @@ public class AnalogViewer extends Panel implements ClockViewer{
     private static final int CLOCK_SIDE = 300;
     private static final int CLOCK_HALFSIDE = CLOCK_SIDE/2;
 
-    private static final int CLOCK_CONTAINS_MINUTE_SECOND = 60;
-    private static final int CLOCK_CONTAINS_HOUR = 12;
+
+    private static final int CLOCK_CONTAINS_HOUR = DAY_CONTAINS_HOUR/2;
     private static final int CLOCK_ROTATION = 360;
     private static final int CLOCK_MINUTE_SECOND_DIV = CLOCK_ROTATION/CLOCK_CONTAINS_MINUTE_SECOND;
     private static final int CLOCK_HOUR_DIV = CLOCK_ROTATION/CLOCK_CONTAINS_HOUR;

@@ -15,6 +15,10 @@ public class DigitalViewer extends Panel implements ClockViewer{
     private Chronometer chrono;
     private JLabel digitalTime;
 
+    /**
+     * @brief   Constructor
+     * @param subject   the observed chronometer
+     */
     public DigitalViewer(Chronometer subject) {
             chrono = subject;
             subject.attach(this);
@@ -24,13 +28,13 @@ public class DigitalViewer extends Panel implements ClockViewer{
             update();
     }
 
+    @Override
     public void update()
     {
         int time = chrono.getTimeInSeconds();
-        //int time = 30 + 60*15 + 60*60*19;
-        int seconds = time%60;
-        int minutes = (time/60)%60;
-        int hours = (time/(60*60))%12;  //TODO check div
+        int seconds = time%CLOCK_CONTAINS_MINUTE_SECOND;
+        int minutes = (time/CLOCK_CONTAINS_MINUTE_SECOND)%CLOCK_CONTAINS_MINUTE_SECOND;
+        int hours = (time/(CLOCK_CONTAINS_MINUTE_SECOND*CLOCK_CONTAINS_MINUTE_SECOND))%DAY_CONTAINS_HOUR;
 
         DecimalFormat df = new DecimalFormat("##");
 
@@ -41,6 +45,7 @@ public class DigitalViewer extends Panel implements ClockViewer{
         digitalTime.setText(hoursText+minutesText+secondsText);
     }
 
+    @Override
     public void repaint()
     {
         update();

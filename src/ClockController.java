@@ -21,6 +21,9 @@ public class ClockController implements ClockViewer
 
     private Chronometer clock;
 
+    /**
+     * @brief Constructor
+     */
     ClockController(){
         clock = new Chronometer(0);
         JFrame frame = new JFrame("Notre super chronomètre");
@@ -42,9 +45,11 @@ public class ClockController implements ClockViewer
         frame.add(stopButton);
         frame.add(resetButton);
         frame.add(quitButton);
+
         frame.setLayout(new FlowLayout());
         frame.setSize(CONTROLLER_SIDE,CONTROLLER_SIDE);
         frame.setVisible(true);
+
         romanButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) { createAnalogViewer(true); }
         });
@@ -82,6 +87,9 @@ public class ClockController implements ClockViewer
         });
     }
 
+    /**
+     * @brief   Opens a window with a digital view of the chronometer
+     */
     private void createNumericClockViewer()
     {
         JFrame frame = new JFrame("Horloge Numérique");
@@ -89,34 +97,41 @@ public class ClockController implements ClockViewer
         frame.getContentPane().add(panel);
         frame.setSize(CLOCK_PANEL_SIDE, CLOCK_DIGITAL_HEIGHT);
         frame.setVisible(true);
-        frame.repaint();
     }
 
 
+    /**
+     * @brief   Opens a window with a roman analog view, an arab analog view and a digital view of the chronometer
+     */
     private void createMixedClockViewer()
     {
         JFrame frame = new JFrame("Horloge mixte");
         Panel romanPanel = new AnalogViewer(true, clock);
         Panel arabPanel = new AnalogViewer(false, clock);
         Panel digital = new DigitalViewer(clock);
+
         frame.getContentPane().add(romanPanel);
         frame.getContentPane().add(arabPanel);
         frame.getContentPane().add(digital);
+
         frame.setLayout(new FlowLayout());
         frame.setSize(3* CLOCK_PANEL_SIDE, CLOCK_PANEL_SIDE);
         frame.setVisible(true);
-        frame.repaint();
     }
 
+    /**
+     * @brief   Opens a window with an analog view of the chronometer
+     * @param romanClock    true if roman numbers, false if arab numbers
+     */
     private void createAnalogViewer(boolean romanClock){
         JFrame frame = romanClock ? new JFrame("Horloge Romaine") : new JFrame("Horloge Arabe");
         Panel panel = new AnalogViewer(romanClock, clock);
         frame.getContentPane().add(panel);
         frame.setSize(CLOCK_PANEL_SIDE, CLOCK_PANEL_SIDE);
         frame.setVisible(true);
-        frame.repaint();
     }
 
+    @Override
     public void update()
     {}
 

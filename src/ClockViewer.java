@@ -8,6 +8,8 @@
  */
 
 public interface ClockViewer {
+    int CLOCK_CONTAINS_MINUTE_SECOND = 60;
+    int DAY_CONTAINS_HOUR = 24;
     /**
      * @brief   refreshes the view when notified by subject
      */

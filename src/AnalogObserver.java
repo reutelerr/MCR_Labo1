@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.*;
 
 
@@ -9,20 +12,35 @@ public class AnalogObserver extends Panel implements ClockViewer{
 
 
     private Image clockImg;
-    private Clock myClock;    //TODO suppr chrono?
+    private Chronometer chrono;    //TODO suppr chrono?
 
     /**
      *
      * @param romanClock false pour horloge arabe, true pour horloge romaine
      */
-    public AnalogObserver(boolean romanClock, Clock subject) {
+    public AnalogObserver(boolean romanClock, Chronometer subject) {
         try {
             String clockFilename = romanClock ? "/Users/robinreuteler/IdeaProjects/MCR_Labo1/clock2.jpg" : "/Users/robinreuteler/IdeaProjects/MCR_Labo1/clock1.jpg";
             Image myImg = Toolkit.getDefaultToolkit().getImage(clockFilename);
             clockImg = myImg.getScaledInstance(CLOCK_SIDE, CLOCK_SIDE, Image.SCALE_DEFAULT);
 
-            myClock = subject;
+            chrono = subject;
             subject.attach(this);
+
+            this.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent e)
+                {
+                    if(chrono.isRunning())
+                    {
+                        chrono.stop();
+                    }
+                    else
+                    {
+                        chrono.start();
+                    }
+                }
+            });
+
             update();
         } catch (Exception e) {
             System.out.println("Error:"+e.getMessage());
@@ -51,7 +69,7 @@ public class AnalogObserver extends Panel implements ClockViewer{
     }
 
     private void paintNeedles(Graphics g){
-        int time = myClock.getTimeInSeconds();
+        int time = chrono.getTimeInSeconds();
         //int time = 30 + 60*15 + 60*60*19;
         int seconds = time%60;
         int minutes = (time/60)%60;

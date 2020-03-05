@@ -32,6 +32,7 @@ public class AnalogViewer extends Panel implements ClockViewer{
     private Image clockImg;
     private Chronometer chrono;
 
+
     /**
      * @brief   Constructor
      * @param romanClock    false for arab numbers clock, true for roman numbers clock

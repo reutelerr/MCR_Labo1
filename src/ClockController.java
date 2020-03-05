@@ -112,7 +112,10 @@ public class ClockController implements ClockViewer
     private void createAnalogViewer(boolean romanClock){
 
         JFrame frame = romanClock ? new JFrame("Horloge Romaine") : new JFrame("Horloge Arabe");
-
+//TODO test claire
+        /*ImageIcon icon =
+        frame.a*/
+                //
         Panel panel = new AnalogObserver(romanClock, clock);
         frame.getContentPane().add(panel);
         frame.setSize(500, 500);

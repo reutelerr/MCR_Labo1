@@ -62,6 +62,7 @@ public class ClockController implements ClockViewer
         resetButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 clock.reset();
+                clock.notifyObservers();    //rafraîchit la vue
             }
         });
         quitButton.addActionListener(new ActionListener(){
@@ -84,21 +85,21 @@ public class ClockController implements ClockViewer
 
     private void createMixedClockViewer()
     {
-
+        //JFrame frame = new JFrame("Horloge Mixte");
+        Panel panel = new ClockLayout(clock);
+        /*frame.getContentPane().add(panel);
+        frame.setSize(500, 200);
+        frame.setVisible(true);
+        frame.repaint();*/
     }
 
     private void createAnalogViewer(boolean romanClock){
 
-        JFrame frame;
-        if(romanClock)
-        {
-            frame = new JFrame("Horloge Romaine");
-        }
-        else
-        {
-            frame = new JFrame("Horloge Arabe");
-        }
-
+        JFrame frame = romanClock ? new JFrame("Horloge Romaine") : new JFrame("Horloge Arabe");
+//TODO test claire
+        /*ImageIcon icon =
+        frame.a*/
+                //
         Panel panel = new AnalogObserver(romanClock, clock);
         frame.getContentPane().add(panel);
         frame.setSize(500, 500);

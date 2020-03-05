@@ -58,7 +58,6 @@ class Chronometer extends Clock
     Chronometer(int startTime)
     {
         super();
-        timer = new Timer();
         time_in_seconds = startTime;
     }
 
@@ -68,6 +67,7 @@ class Chronometer extends Clock
     void reset()
     {
         time_in_seconds = 0;
+        notifyObservers();
     }
 
     /**
@@ -89,6 +89,7 @@ class Chronometer extends Clock
             }
         }
         Tick tick = new Tick();
+        timer = new Timer();
         timer.scheduleAtFixedRate(tick, 0, 1000);
     }
 

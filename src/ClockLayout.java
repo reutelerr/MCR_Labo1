@@ -2,8 +2,10 @@ import java.awt.*;
 import javax.swing.*;
 
 
+
+
 public class ClockLayout extends Panel {
-    ClockLayout(Clock clock) {
+    ClockLayout(Chronometer clock) {
         JFrame frame = new JFrame("Flow Layout");
         Panel romanPanel = getClockPanel(true, clock);
         Panel arabPanel = getClockPanel(false, clock);
@@ -20,7 +22,7 @@ public class ClockLayout extends Panel {
     }
 
 
-    public static Panel getClockPanel(boolean romanClock, Clock clock){  //TODO sert à rien méthode séparée
+    public static Panel getClockPanel(boolean romanClock, Chronometer clock){  //TODO sert à rien méthode séparée
         Panel panel = new AnalogObserver(romanClock, clock);
         return panel;
     }

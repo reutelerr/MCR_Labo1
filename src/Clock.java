@@ -50,6 +50,7 @@ class Chronometer extends Clock
 {
     private Timer timer;
     private int time_in_seconds;
+    private boolean isRunning;
 
     /**
      * @brief Constructor : creates a Timer and sets the starting time-value of the clock
@@ -59,6 +60,7 @@ class Chronometer extends Clock
     {
         super();
         time_in_seconds = startTime;
+        isRunning = false;
     }
 
     /**
@@ -76,6 +78,7 @@ class Chronometer extends Clock
     void stop()
     {
         timer.cancel();
+        isRunning = false;
     }
 
     /**
@@ -91,6 +94,7 @@ class Chronometer extends Clock
         Tick tick = new Tick();
         timer = new Timer();
         timer.scheduleAtFixedRate(tick, 0, 1000);
+        isRunning = true;
     }
 
     /**
@@ -100,5 +104,14 @@ class Chronometer extends Clock
     public int getTimeInSeconds()
     {
         return time_in_seconds;
+    }
+
+    /**
+     * @brief checks if the chronometer is running
+     * @return true if the chrono is running
+     */
+    public boolean isRunning()
+    {
+        return isRunning;
     }
 }

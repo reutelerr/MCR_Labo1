@@ -6,7 +6,7 @@ import java.awt.geom.*;
 
 
 
-public class AnalogObserver extends Panel implements ClockViewer{
+public class AnalogViewer extends Panel implements ClockViewer{
     private static final int CLOCK_SIDE = 300;
     private static final int CLOCK_HALFSIDE = CLOCK_SIDE/2;
 
@@ -28,7 +28,7 @@ public class AnalogObserver extends Panel implements ClockViewer{
      *
      * @param romanClock false pour horloge arabe, true pour horloge romaine
      */
-    public AnalogObserver(boolean romanClock, Chronometer subject) {
+    public AnalogViewer(boolean romanClock, Chronometer subject) {
         try {
             String clockFilename = romanClock ? "/Users/robinreuteler/IdeaProjects/MCR_Labo1/clock2.jpg" : "/Users/robinreuteler/IdeaProjects/MCR_Labo1/clock1.jpg";
             Image myImg = Toolkit.getDefaultToolkit().getImage(clockFilename);

@@ -30,7 +30,7 @@ public class Main {
         //Test de l'affichage clock
         /*{
             JFrame frame = new JFrame("Analog");
-            Panel panel = new AnalogObserver(false);
+            Panel panel = new AnalogViewer(false);
             frame.getContentPane().add(panel);
             frame.setSize(500, 500);
             frame.setVisible(true);
@@ -39,14 +39,14 @@ public class Main {
         //Test de l'affichage clock
         {
             JFrame frame = new JFrame("Roman");
-            Panel panel = new AnalogObserver(true);
+            Panel panel = new AnalogViewer(true);
             frame.getContentPane().add(panel);
             frame.setSize(500, 500);
             frame.setVisible(true);
             frame.repaint();
         }
 
-        new ClockLayout();        */
+        new MixedViewer();        */
 
     }
 }

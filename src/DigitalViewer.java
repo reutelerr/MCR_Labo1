@@ -1,3 +1,12 @@
+/*
+ * Laboratoire : 01
+ * Fichier     : DigitalViewer.java
+ * Auteur(s)   : Delhomme Claire, Reuteler Robin
+ * Date        : 05.03.2020
+ *
+ * But         : Vue digitale de l'horloge
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;

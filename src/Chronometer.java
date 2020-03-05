@@ -1,3 +1,12 @@
+/*
+ * Laboratoire : 01
+ * Fichier     : Chronometer.java
+ * Auteur(s)   : Delhomme Claire, Reuteler Robin
+ * Date        : 05.03.2020
+ *
+ * But         : Chronomètre (horloge concrète)
+ */
+
 import java.util.Timer;
 import java.util.TimerTask;
 

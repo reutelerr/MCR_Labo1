@@ -1,3 +1,12 @@
+/*
+ * Laboratoire : 01
+ * Fichier     : Clock.java
+ * Auteur(s)   : Delhomme Claire, Reuteler Robin
+ * Date        : 05.03.2020
+ *
+ * But         : Horloge (sujet abstrait)
+ */
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;

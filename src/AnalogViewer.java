@@ -1,3 +1,12 @@
+/*
+ * Laboratoire : 01
+ * Fichier     : AnalogViewer.java
+ * Auteur(s)   : Delhomme Claire, Reuteler Robin
+ * Date        : 05.03.2020
+ *
+ * But         : Vue analogique de l'horloge
+ */
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

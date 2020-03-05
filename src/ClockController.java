@@ -1,3 +1,12 @@
+/*
+ * Laboratoire : 01
+ * Fichier     : ClockController.java
+ * Auteur(s)   : Delhomme Claire, Reuteler Robin
+ * Date        : 05.03.2020
+ *
+ * But         : Contrôle du chronomètre et de ses vues
+ */
+
 import java.awt.event.*;
 import java.awt.FlowLayout;
 import javax.swing.*;
@@ -6,14 +15,17 @@ import java.awt.*;
 
 public class ClockController implements ClockViewer
 {
+    private final static int CLOCK_PANEL_SIDE = 500;
+    private final static int CLOCK_DIGITAL_HEIGHT = 200;
+    private final static int CONTROLLER_SIDE = 300;
+
     private Chronometer clock;
-    private JButton romanButton, arabButton, numericButton, mixedButton, startButton, stopButton, resetButton, quitButton;
 
     ClockController(){
-        clock = new Chronometer(0);//On pourrait passer un argument au constructeur pour préciser quel type d'horloge utiliser ?
+        clock = new Chronometer(0);
+        JFrame frame = new JFrame("Notre super chronomètre");
 
-        JFrame frame = new JFrame("Flow Layout");
-
+        JButton romanButton, arabButton, numericButton, mixedButton, startButton, stopButton, resetButton, quitButton;
         romanButton = new JButton("Horloge Romaine");
         arabButton = new JButton("Horloge Arabe");
         numericButton = new JButton("Horloge Numérique");
@@ -31,7 +43,7 @@ public class ClockController implements ClockViewer
         frame.add(resetButton);
         frame.add(quitButton);
         frame.setLayout(new FlowLayout());
-        frame.setSize(300,300);
+        frame.setSize(CONTROLLER_SIDE,CONTROLLER_SIDE);
         frame.setVisible(true);
         romanButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
@@ -91,7 +103,7 @@ public class ClockController implements ClockViewer
         JFrame frame = new JFrame("Horloge Numérique");
         Panel panel = new DigitalViewer(clock);
         frame.getContentPane().add(panel);
-        frame.setSize(500, 200);
+        frame.setSize(CLOCK_PANEL_SIDE, CLOCK_DIGITAL_HEIGHT);
         frame.setVisible(true);
         frame.repaint();
     }
@@ -107,21 +119,16 @@ public class ClockController implements ClockViewer
         frame.getContentPane().add(arabPanel);
         frame.getContentPane().add(digital);
         frame.setLayout(new FlowLayout());
-        frame.setSize(1500, 500);
+        frame.setSize(3* CLOCK_PANEL_SIDE, CLOCK_PANEL_SIDE);
         frame.setVisible(true);
         frame.repaint();
     }
 
     private void createAnalogViewer(boolean romanClock){
-
         JFrame frame = romanClock ? new JFrame("Horloge Romaine") : new JFrame("Horloge Arabe");
-//TODO test claire
-        /*ImageIcon icon =
-        frame.a*/
-                //
         Panel panel = new AnalogViewer(romanClock, clock);
         frame.getContentPane().add(panel);
-        frame.setSize(500, 500);
+        frame.setSize(CLOCK_PANEL_SIDE, CLOCK_PANEL_SIDE);
         frame.setVisible(true);
         frame.repaint();
     }

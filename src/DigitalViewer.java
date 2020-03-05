@@ -3,11 +3,11 @@ import java.awt.*;
 import java.text.DecimalFormat;
 
 public class DigitalViewer extends Panel implements ClockViewer{
-    private Clock myClock;
+    private Chronometer chrono;
     private JLabel digitalTime;
 
-    public DigitalViewer(Clock subject) {
-            myClock = subject;
+    public DigitalViewer(Chronometer subject) {
+            chrono = subject;
             subject.attach(this);
 
             digitalTime = new JLabel();
@@ -17,7 +17,7 @@ public class DigitalViewer extends Panel implements ClockViewer{
 
     public void update()
     {
-        int time = myClock.getTimeInSeconds();
+        int time = chrono.getTimeInSeconds();
         //int time = 30 + 60*15 + 60*60*19;
         int seconds = time%60;
         int minutes = (time/60)%60;

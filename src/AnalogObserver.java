@@ -7,12 +7,12 @@ import java.awt.geom.*;
 
 
 public class AnalogObserver extends Panel implements ClockViewer{
-    public static final int CLOCK_SIDE = 300;
-    public static final int CLOCK_HALFSIDE = CLOCK_SIDE/2;
+    private static final int CLOCK_SIDE = 300;
+    private static final int CLOCK_HALFSIDE = CLOCK_SIDE/2;
 
 
     private Image clockImg;
-    private Chronometer chrono;    //TODO suppr chrono?
+    private Chronometer chrono;//TODO suppr chrono?
 
     /**
      *

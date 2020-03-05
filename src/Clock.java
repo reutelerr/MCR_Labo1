@@ -17,7 +17,7 @@ public abstract class Clock
     /**
      * @brief Tells all current observers to update
      */
-    public void notifyObservers()
+    protected void notifyObservers()
     {
         for(ClockViewer observer : observers)
         {
@@ -42,6 +42,4 @@ public abstract class Clock
     {
         observers.remove(v);
     }
-
-    public abstract int getTimeInSeconds();
 }

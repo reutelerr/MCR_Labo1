@@ -34,29 +34,23 @@ public class ClockController implements ClockViewer
         frame.setSize(300,300);
         frame.setVisible(true);
         romanButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                CreateRomanClockViewer();
-            }
+            public void actionPerformed(ActionEvent e) { createAnalogViewer(true); }
         });
         arabButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                CreateArabClockViewer();
-            }
+            public void actionPerformed(ActionEvent e) { createAnalogViewer(false); }
         });
         numericButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                CreateNumericClockViewer();
+                createNumericClockViewer();
             }
         });
         mixedButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                CreateMixedClockViewer();
+                createMixedClockViewer();
             }
         });
         startButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                clock.start();
-            }
+            public void actionPerformed(ActionEvent e) { clock.start(); }
         });
         stopButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
@@ -76,17 +70,7 @@ public class ClockController implements ClockViewer
         });
     }
 
-    public void CreateRomanClockViewer()
-    {
-        createAnalogViewer(true);
-    }
-
-    public void CreateArabClockViewer()
-    {
-        createAnalogViewer(false);
-    }
-
-    public void CreateNumericClockViewer()
+    private void createNumericClockViewer()
     {
         JFrame frame = new JFrame("Horloge Numérique");
         Panel panel = new DigitalViewer(clock);
@@ -97,7 +81,7 @@ public class ClockController implements ClockViewer
     }
 
 
-    public void CreateMixedClockViewer()
+    private void createMixedClockViewer()
     {
         JFrame frame = new JFrame("Horloge mixte");
         Panel romanPanel = new AnalogViewer(true, clock);

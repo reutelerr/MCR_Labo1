@@ -99,12 +99,17 @@ public class ClockController implements ClockViewer
 
     public void CreateMixedClockViewer()
     {
-        //JFrame frame = new JFrame("Horloge Mixte");
-        Panel panel = new MixedViewer(clock);
-        /*frame.getContentPane().add(panel);
-        frame.setSize(500, 200);
+        JFrame frame = new JFrame("Flow Layout");
+        Panel romanPanel = new AnalogViewer(true, clock);
+        Panel arabPanel = new AnalogViewer(false, clock);
+        Panel digital = new DigitalViewer(clock);
+        frame.getContentPane().add(romanPanel);
+        frame.getContentPane().add(arabPanel);
+        frame.getContentPane().add(digital);
+        frame.setLayout(new FlowLayout());
+        frame.setSize(1500, 500);
         frame.setVisible(true);
-        frame.repaint();*/
+        frame.repaint();
     }
 
     private void createAnalogViewer(boolean romanClock){

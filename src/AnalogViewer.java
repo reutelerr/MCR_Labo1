@@ -1,12 +1,11 @@
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.geom.*;
 
 
 
-public class AnalogObserver extends Panel implements ClockViewer{
+public class AnalogViewer extends Panel implements ClockViewer{
     private static final int CLOCK_SIDE = 300;
     private static final int CLOCK_HALFSIDE = CLOCK_SIDE/2;
 
@@ -22,18 +21,21 @@ public class AnalogObserver extends Panel implements ClockViewer{
 
 
     private Image clockImg;
-    private Chronometer chrono;//TODO suppr chrono?
+    private Chronometer chrono;
+
 
     /**
-     *
-     * @param romanClock false pour horloge arabe, true pour horloge romaine
+     * @brief   Constructor
+     * @param romanClock    false for arab numbers clock, true for roman numbers clock
+     * @param subject       the chronometer linked to the view
      */
-    public AnalogObserver(boolean romanClock, Chronometer subject) {
+    public AnalogViewer(boolean romanClock, Chronometer subject) {
         try {
-            String clockFilename = romanClock ? "/Users/robinreuteler/IdeaProjects/MCR_Labo1/clock2.jpg" : "/Users/robinreuteler/IdeaProjects/MCR_Labo1/clock1.jpg";
+            String clockFilename = romanClock ? "clock2.jpg" : "clock1.jpg";
             Image myImg = Toolkit.getDefaultToolkit().getImage(clockFilename);
             clockImg = myImg.getScaledInstance(CLOCK_SIDE, CLOCK_SIDE, Image.SCALE_DEFAULT);
 
+            //Lien Observer - Sujet
             chrono = subject;
             subject.attach(this);
 
@@ -50,7 +52,6 @@ public class AnalogObserver extends Panel implements ClockViewer{
                     }
                 }
             });
-
             update();
         } catch (Exception e) {
             System.out.println("Error:"+e.getMessage());
@@ -58,6 +59,7 @@ public class AnalogObserver extends Panel implements ClockViewer{
     }
 
 
+    @Override
     public void paint(Graphics g) {
         g.drawImage(clockImg, 0, 0, null);
         paintNeedles(g);
@@ -77,8 +79,11 @@ public class AnalogObserver extends Panel implements ClockViewer{
         this.repaint();
     }
 
+    /**
+     * @brief   Draws the clock's needles
+     * @param g graphic context
+     */
     private void paintNeedles(Graphics g){
-      
         int time = chrono.getTimeInSeconds();
         int seconds = time%CLOCK_CONTAINS_MINUTE_SECOND;
         int minutes = (time/CLOCK_CONTAINS_MINUTE_SECOND)%CLOCK_CONTAINS_MINUTE_SECOND;
@@ -87,16 +92,23 @@ public class AnalogObserver extends Panel implements ClockViewer{
         paintANeedle(g, seconds, SECOND_NEEDLE_RATIO, CLOCK_MINUTE_SECOND_DIV, Color.RED);
         paintANeedle(g, minutes, MINUTE_NEEDLE_RATIO, CLOCK_MINUTE_SECOND_DIV, Color.BLUE);
         paintANeedle(g, hours, HOUR_NEEDLE_RATIO, CLOCK_HOUR_DIV, Color.BLACK);
-
     }
 
+    /**
+     * @brief   Paints a clock needle
+     *
+     * @param g             graphic context
+     * @param time          time to represent ([0-59] for minutes and seconds, [0-11] for hours)
+     * @param needleRatio   ratio of needle height divided by clock height
+     * @param degree        degree of  rotation for each passing time unit (second/minute/hour)
+     * @param color         needle color
+     */
     private void paintANeedle(Graphics g, int time, double needleRatio, int degree, Color color){
-        Graphics2D g2 = (Graphics2D) g;
-
         double radians = Math.toRadians(degree*time);
         double x = Math.cos(radians - Math.PI/2.0)*CLOCK_HALFSIDE*needleRatio;
         double y = Math.sin(radians - Math.PI/2.0)*CLOCK_HALFSIDE*needleRatio;
 
+        Graphics2D g2 = (Graphics2D) g;
         Line2D lin = new Line2D.Float(CLOCK_HALFSIDE, CLOCK_HALFSIDE, (float) (CLOCK_HALFSIDE + x), (float) (CLOCK_HALFSIDE + y));
         g2.setColor(color);
         g2.draw(lin);

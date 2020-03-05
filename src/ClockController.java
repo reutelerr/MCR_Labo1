@@ -1,7 +1,5 @@
-import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.awt.FlowLayout;
-import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -85,12 +83,17 @@ public class ClockController implements ClockViewer
 
     private void createMixedClockViewer()
     {
-        //JFrame frame = new JFrame("Horloge Mixte");
-        Panel panel = new ClockLayout(clock);
-        /*frame.getContentPane().add(panel);
-        frame.setSize(500, 200);
+        JFrame frame = new JFrame("Horloge mixte");
+        Panel romanPanel = new AnalogViewer(true, clock);
+        Panel arabPanel = new AnalogViewer(false, clock);
+        Panel digital = new DigitalViewer(clock);
+        frame.getContentPane().add(romanPanel);
+        frame.getContentPane().add(arabPanel);
+        frame.getContentPane().add(digital);
+        frame.setLayout(new FlowLayout());
+        frame.setSize(1500, 500);
         frame.setVisible(true);
-        frame.repaint();*/
+        frame.repaint();
     }
 
     private void createAnalogViewer(boolean romanClock){
@@ -100,7 +103,7 @@ public class ClockController implements ClockViewer
         /*ImageIcon icon =
         frame.a*/
                 //
-        Panel panel = new AnalogObserver(romanClock, clock);
+        Panel panel = new AnalogViewer(romanClock, clock);
         frame.getContentPane().add(panel);
         frame.setSize(500, 500);
         frame.setVisible(true);

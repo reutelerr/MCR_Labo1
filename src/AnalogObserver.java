@@ -1,16 +1,25 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.*;
 
 
 
 public class AnalogObserver extends Panel implements ClockViewer{
-    public static final int CLOCK_SIDE = 300;
-    public static final int CLOCK_HALFSIDE = CLOCK_SIDE/2;
+    private static final int CLOCK_SIDE = 300;
+    private static final int CLOCK_HALFSIDE = CLOCK_SIDE/2;
+
+    private static final int CLOCK_CONTAINS_MINUTE_SECOND = 60;
+    private static final int CLOCK_CONTAINS_HOUR = 12;
+    private static final int CLOCK_ROTATION = 360;
+    private static final int CLOCK_MINUTE_SECOND_DIV = CLOCK_ROTATION/CLOCK_CONTAINS_MINUTE_SECOND;
+    private static final int CLOCK_HOUR_DIV = CLOCK_ROTATION/CLOCK_CONTAINS_HOUR;
+
+    private static final double HOUR_NEEDLE_RATIO = 0.4;
+    private static final double MINUTE_NEEDLE_RATIO = 0.6;
+    private static final double SECOND_NEEDLE_RATIO = 0.8;
 
 
     private Image clockImg;
-    private Clock myClock;    //TODO suppr chrono?
+    private Clock myClock;
 
     /**
      *
@@ -33,7 +42,6 @@ public class AnalogObserver extends Panel implements ClockViewer{
 
     public void paint(Graphics g) {
         g.drawImage(clockImg, 0, 0, null);
-            //super.paint(g);  // fixes the immediate problem.
         paintNeedles(g);
     }
 
@@ -53,17 +61,16 @@ public class AnalogObserver extends Panel implements ClockViewer{
 
     private void paintNeedles(Graphics g){
         int time = myClock.getTimeInSeconds();
-        //int time = 30 + 60*15 + 60*60*19;
-        int seconds = time%60;
-        int minutes = (time/60)%60;
-        int hours = (time/(60*60))%12;  //TODO check div
+        int seconds = time%CLOCK_CONTAINS_MINUTE_SECOND;
+        int minutes = (time/CLOCK_CONTAINS_MINUTE_SECOND)%CLOCK_CONTAINS_MINUTE_SECOND;
+        int hours = (time/(CLOCK_CONTAINS_MINUTE_SECOND*CLOCK_CONTAINS_MINUTE_SECOND))%CLOCK_CONTAINS_HOUR;
 
-        paintANeedle(g, seconds, 0.8, 360/60);
-        paintANeedle(g, minutes, 0.6, 360/60);
-        paintANeedle(g, hours, 0.4, 360/12);
+        paintANeedle(g, seconds, SECOND_NEEDLE_RATIO, CLOCK_MINUTE_SECOND_DIV, Color.RED);
+        paintANeedle(g, minutes, MINUTE_NEEDLE_RATIO, CLOCK_MINUTE_SECOND_DIV, Color.BLUE);
+        paintANeedle(g, hours, HOUR_NEEDLE_RATIO, CLOCK_HOUR_DIV, Color.BLACK);
     }
 
-    private void paintANeedle(Graphics g, int time, double needleRatio, int degree){
+    private void paintANeedle(Graphics g, int time, double needleRatio, int degree, Color color){
         Graphics2D g2 = (Graphics2D) g;
 
         double radians = Math.toRadians(degree*time);
@@ -71,6 +78,7 @@ public class AnalogObserver extends Panel implements ClockViewer{
         double y = Math.sin(radians - Math.PI/2.0)*CLOCK_HALFSIDE*needleRatio;
 
         Line2D lin = new Line2D.Float(CLOCK_HALFSIDE, CLOCK_HALFSIDE, (float) (CLOCK_HALFSIDE + x), (float) (CLOCK_HALFSIDE + y));
+        g2.setColor(color);
         g2.draw(lin);
     }
 }

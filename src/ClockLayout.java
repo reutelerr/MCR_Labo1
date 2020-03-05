@@ -7,7 +7,8 @@ public class ClockLayout extends Panel {
         JFrame frame = new JFrame("Flow Layout");
         Panel romanPanel = getClockPanel(true, clock);
         Panel arabPanel = getClockPanel(false, clock);
-        JLabel digital = new JLabel("hh:mm:ss");
+        Panel digital = new DigitalViewer(clock);
+        //JLabel digital = new JLabel("hh:mm:ss");
         //frame.setLayout(new FlowLayout());
         frame.getContentPane().add(romanPanel);
         frame.getContentPane().add(arabPanel);
